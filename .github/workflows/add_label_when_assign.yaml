@@ -7,6 +7,7 @@ on:
 jobs:
   debug-env:
     runs-on: ubuntu-latest
+    environment: test-1
     steps:
       - name: Debug env
         run: echo ${{ toJSON(vars.MANAGERS) }}
