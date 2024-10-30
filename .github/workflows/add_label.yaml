@@ -6,9 +6,6 @@ on:
 
 jobs:
   add_label:
-    permissions:
-      contents: read
-      issues: write
     runs-on: ubuntu-latest
     steps:
       - name: Add label
