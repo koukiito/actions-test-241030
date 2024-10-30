@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Debug env
-        run: echo ${vars.MANAGERS}
+        run: echo ${{ vars.MANAGERS }}
   add_label:
     runs-on: ubuntu-latest
     environment: test-1
