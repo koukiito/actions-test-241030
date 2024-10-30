@@ -12,7 +12,7 @@ jobs:
       - name: Debug env
         run: |
           echo ${{ toJSON(vars.MANAGERS) }}
-          echo ${{ toJSON(github.event.pull_request.assigned.*.login) }}
+          echo ${{ toJSON(github.event) }}
   add_label:
     runs-on: ubuntu-latest
     environment: test-1
