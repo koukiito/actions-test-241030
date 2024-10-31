@@ -1,0 +1,26 @@
+name: Add label
+
+on:
+  pull_request:
+    types: [unassigned]
+
+jobs:
+  remove_label:
+    runs-on: ubuntu-latest
+    environment: test-1
+    permissions:
+      contents: read
+      issues: read
+      pull-requests: write
+    if: contains(fromJSON(vars.MANAGERS), github.event.assignee.login)
+    steps:
+      - name: Remove label
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.removeLabel({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: ['needs-review']
+            })
