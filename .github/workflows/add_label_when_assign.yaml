@@ -22,12 +22,10 @@ jobs:
       contents: read
       issues: read
       pull-requests: write
-    env:
-      MANAGERS: ${{vars.MANAGERS}}
-    if: contains(fromJSON(env.MANAGERS), github.event.assignee.login)
     steps:
       - name: Add label
         uses: actions/github-script@v7
+        if: contains(fromJSON(vars.MANAGERS), github.event.assignee.login)
         with:
           script: |
             github.rest.issues.addLabels({
