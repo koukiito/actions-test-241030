@@ -11,9 +11,9 @@ jobs:
     steps:
       - name: Debug env
         run: |
-          echo ${{ toJSON(contains(fromJSON(vars.MANAGERS), github.event.assignee.login)) }}
-          echo ${{ toJSON(fromJSON(vars.MANAGERS)) }}
-          echo ${{ toJSON(github.event.assignee.login) }}
+          echo "${{ toJSON(contains(fromJSON(vars.MANAGERS), github.event.assignee.login)) }}"
+          echo "${{ toJSON(fromJSON(vars.MANAGERS)) }}"
+          echo "${{ toJSON(github.event.assignee.login) }}"
   add_label:
     runs-on: ubuntu-latest
     environment: test-1
