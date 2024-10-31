@@ -13,6 +13,7 @@ jobs:
         run: |
           echo ${{ toJSON(vars.MANAGERS) }}
           echo ${{ toJSON(github.event.assignee.login) }}
+          echo ${{ toJSON(fromJSON(github.event.assignee.login)) }}
   add_label:
     runs-on: ubuntu-latest
     environment: test-1
