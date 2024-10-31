@@ -20,7 +20,7 @@ jobs:
       contents: read
       issues: read
       pull-requests: write
-    if: contains(fromJson(vars.MANAGERS), github.event.assignee.login)
+    if: contains(fromJSON(vars.MANAGERS), github.event.assignee.login)
     steps:
       - name: Add label
         uses: actions/github-script@v7
