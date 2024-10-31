@@ -1,4 +1,4 @@
-name: Add label
+name: Remove label
 
 on:
   pull_request:
