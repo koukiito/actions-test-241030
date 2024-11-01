@@ -1,0 +1,36 @@
+name: Add label
+
+on:
+  pull_request:
+    types: [assigned]
+
+jobs:
+  debug-env:
+    runs-on: ubuntu-latest
+    environment: test-1
+    if: contains('Hello', 'Hello')
+    steps:
+      - name: Debug env
+        run: |
+          echo "${{ toJSON(contains(fromJSON(vars.MANAGERS), github.event.assignee.login)) }}"
+          echo "${{ toJSON(fromJSON(vars.MANAGERS)) }}"
+          echo "${{ toJSON(github.event.assignee.login) }}"
+  add_label:
+    runs-on: ubuntu-latest
+    environment: test-1
+    permissions:
+      contents: read
+      issues: read
+      pull-requests: write
+    if: contains(fromJSON(vars.MANAGERS), github.event.assignee.login)
+    steps:
+      - name: Add label
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
+        with:
+          script: |
+            github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: ['needs-review']
+            })
